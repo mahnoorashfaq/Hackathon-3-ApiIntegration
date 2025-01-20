@@ -7,8 +7,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { IoIosArrowUp } from "react-icons/io"
-import { MdArrowForwardIos } from "react-icons/md"
 import { SliderDemo } from "./slider"
 import { CiFilter } from "react-icons/ci"
 

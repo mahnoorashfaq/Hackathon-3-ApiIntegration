@@ -1,6 +1,5 @@
 "use client"
 import { BiMinus, BiPlus } from "react-icons/bi";
-import { IoMdCheckmark } from "react-icons/io";
 import { LiaStarSolid } from "react-icons/lia";
 import Image from "next/image";
 import { useParams } from "next/navigation"
