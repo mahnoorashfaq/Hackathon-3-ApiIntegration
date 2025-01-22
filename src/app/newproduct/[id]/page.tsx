@@ -78,9 +78,9 @@ export default function NewProduct(){
          <div  className="w-[340px] sm:w-[600px] xl:w-[444px] lg:h-[480px] md:w-[280px] lg:w-[350px] md:h-[400px]  order-1 md:order-2">{item?.img_url && (<Image src={item?.img_url} alt="image" width={350} height={350} className="w-full h-full  rounded-3xl"></Image>)} </div>
 {/* Right */}
 <div className="w-[340px] sm:w-[600px] h-[400px] md:w-[350px] lg:md:w-[500px] xl:w-[550px]  lg:h-[480px]  order-3 md:order-3">
-<h3 className="text-2xl sm:text-3xl font-extrabold lg:text-4xl pt-1 pb-2 lg:pb-4">One Life Graphic T-shirt</h3>
-<p className="flex items-center gap-x-1 text-yellow-400 text-[13px] sm:text-[16px] lg:text-[16px] pb-2"><LiaStarSolid /><LiaStarSolid /><LiaStarSolid /><LiaStarSolid /><LiaStarSolid /><span className="text-gray-500 text-[16px]">4.5/5</span></p>
-<p className="font-semibold text-[18px] sm:text-[19px] lg:text-[20px] pb-2">$260 &nbsp;&nbsp;<span className="line-through text-gray-400">$300</span></p>
+<h3 className="text-2xl sm:text-3xl font-extrabold lg:text-4xl pt-1 pb-2 lg:pb-4">{item?.title}</h3>
+<p className="flex items-center gap-x-1 text-yellow-400 text-[13px] sm:text-[16px] lg:text-[16px] pb-2"><LiaStarSolid /><LiaStarSolid /><LiaStarSolid /><LiaStarSolid /><LiaStarSolid /><span className="text-gray-500 text-[16px]">{item?.rate}</span></p>
+<p className="font-semibold text-[18px] sm:text-[19px] lg:text-[20px] pb-2">{item?.price} &nbsp;&nbsp;<span className="line-through text-gray-400">{item?.price}</span></p>
 <p className="xl:w-62 text-[11px] sm:text-[13px] lg:text-[14px] pb-2 lg:pb-3 text-gray-400">This graphic t-shirt which is perfect for any occasion. Crafted from a soft 
     and breathable fabric, it offers superior comfort and style.</p>
     <hr className="pb-2 lg:pb-4"/>

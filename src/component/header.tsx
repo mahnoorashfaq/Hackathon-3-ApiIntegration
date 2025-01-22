@@ -21,7 +21,7 @@ export default function Header(){
                 <div className=" text-sm md:text-xs xl:text-[15px] hidden md:block ">
                     <ul className="flex items-center  gap-5">
                     <li ><Link href="/" className=""> <NavigationMenuDemo /></Link></li>
-                    <li><Link href="/">On Sale</Link></li>
+                    <li><Link href="#sell">On Sale</Link></li>
                     <li><Link href="casual">New Arrivals</Link></li>
                     <li><Link href="casual">Brands</Link></li>
                     </ul>

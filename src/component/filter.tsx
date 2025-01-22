@@ -26,7 +26,7 @@ export function SheetSide1() {
             </SheetHeader>
             <div>
                         <hr />
-              <div className="pl-2 pr-2 casual-height pt-4">
+              <div className="pl-2 pr-2 casual-height pt-4 ">
                 <p className="flex items-center text-sm text-gray-400 gap-28 ">T-shirts    </p>
                 <p className="flex items-center text-sm text-gray-400 gap-28">Shorts     </p>
                 <p className="flex items-center text-sm text-gray-400 gap-28">Shirts     </p>

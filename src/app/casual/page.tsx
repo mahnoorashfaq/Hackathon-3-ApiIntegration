@@ -172,7 +172,7 @@ export default function Casual() {
                        casual.map((data)=>{
                          return(
                           <div key={data.id}>
-                          <Link href={`/casualproduct/${data.id}`}> <div>  <Image src={data.img_url} alt={data.title} className="w-[200px] h-[200px] sm:w-[230px] sm:h-[230px] md:w-[236px] md:h-[236px] xl:w-[260px] xl:h-[250px] rounded-2xl " ></Image></div></Link>
+                          <Link href={`/casualproduct/${data.id}`}> <div>  <Image src={data.img_url}  width={200} height={200} alt={data.title} className="w-[200px] h-[200px] sm:w-[230px] sm:h-[230px] md:w-[236px] md:h-[236px] xl:w-[260px] xl:h-[250px] rounded-2xl " ></Image></div></Link>
                           <Link href={`/casualproduct/${data.id}`}> <p className="text-sm md:text-base font-bold pt-1">{data.title}</p></Link>
                              <p className="flex text-sm"><span className="text-yellow-500 flex items-center"><IoStar /><IoStar /><IoStar /><IoStar />&nbsp;&nbsp;</span> {data.rate}</p>
                              <p className="text-base md:text-xl font-bold">{data.price}&nbsp;&nbsp;<span className="line-through text-gray-500">{data.discount}</span>&nbsp;&nbsp;<span className="text-red-700">{data.percent}</span></p>

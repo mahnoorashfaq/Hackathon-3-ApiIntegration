@@ -6,6 +6,7 @@ import Header from "@/component/header";
 import Footer from "@/component/footer";
 import FooterUp from "@/component/footerup";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -37,5 +38,6 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
+    
   );
 }

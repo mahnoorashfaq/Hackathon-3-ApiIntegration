@@ -17,13 +17,15 @@ export default function Home() {
   YOUR STYLE</h1>
   <p className="text-[9px] md:text-[10px] lg:text-[11px]  xl:text-[12px] pt-3">Browse Through our diverse range of meticulously crafted garments, designed
   to bring out you individuality and cater to ypur sense and style.</p>
-  <button className="w-full rounded-full bg-black text-white h-8 text-[10px] md:text-[11px]  mt-2 md:w-32"><Link  href="/casual">Shop Now</Link></button>
-  <div className="hero-review flex justify-center items sm:hidden gap-x-5 mt-4">
-<div><h4 className="text-black text-[35px] font-bold">200+</h4><p className="text-[12px] text-gray-300">International Brands</p></div> <hr  className="h-[70px] w-[1px] bg-gray-300"/>
-<div><h4 className="text-black text-[35px] font-bold">2000+</h4><p className="text-[12px] text-gray-300">High-Quality Products</p></div>
+  <button className="w-full rounded-full bg-black text-white h-8 text-[10px] md:text-[12px]  mt-2 md:w-32"><Link  href="/casual">Shop Now</Link></button>
+  <div className="flex-col flex lg:flex-row items-center lg:mt-5">
+  <div className="hero-review flex justify-center items  gap-x-5 mt-4">
+<div><h4 className="text-black text-[35px] font-bold">200+</h4><p className="text-[12px] text-black">International Brands</p></div> <hr  className="h-[70px] w-[1px] bg-gray-300"/>
+<div><h4 className="text-black text-[35px] font-bold">2000+</h4><p className="text-[12px] text-black">High-Quality Products</p></div>
 </div>
-<div className="sm:hidden"><h4 className="text-black text-[35px] font-bold text-center pt-3">30000+</h4><p className="text-[12px] text-gray-300 text-center">Happy Customers</p></div>
-</div>
+<hr  className="hidden lg:block h-[70px] w-[2px] bg-gray-300 lg:ml-4 lg:mr-3"/>
+<div className=""><h4 className="text-black text-[35px] font-bold text-center pt-3">30000+</h4><p className="text-[12px] text-black text-center">Happy Customers</p></div>
+</div></div>
 
 <div className="w-[300px] md:w-[370px] lg:w-[440px]  flex items-center">
   <div className="heroimg1 w-[300px] h-[300px] md:w-[340px] md:h-[330px]  lg:h-[380px] xl:h-[420px] 2xl:w-[380px] 2xl:h-[480px] ">
