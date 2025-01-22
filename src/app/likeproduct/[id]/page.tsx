@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useParams } from "next/navigation"
 import ReviewAll from "@/component/reviewall";
 import LikeProduct from "@/component/likeproduct";
-import product from "../../../../sanity/schemaTypes/product";
 
 interface ILikeproduct{
   title: string,
