@@ -17,11 +17,7 @@ const components: { title: string; }[] = [
   },
   {
     title: "Women",
-  },
-  {
-    title: "Kids",
-    
-  },
+  }
 ]
 
 export function NavigationMenuDemo() {

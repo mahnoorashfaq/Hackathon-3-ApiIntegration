@@ -5,67 +5,33 @@ import Image from "next/image";
 import { useParams } from "next/navigation"
 import ReviewAll from "@/component/reviewall";
 import LikeProduct from "@/component/likeproduct";
+import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { addtocart } from "@/app/Redux/features/cartSlice";
 
-
-interface Iproduct{
-  title: string,
-  id:number,
-  img_url:string,
-  price:string,
-  discount:string,
-  percent:string,
-  rate:string
-
-}
-const product:Iproduct[]=[
-  {
-    title :"T-SHIRT WITH TAPE DETAILS",
-    id:1,
-    img_url:"/image1.png",
-    price: "$120",
-    rate:"4.5/5",
-    discount :"",
-    percent:"",
-
-  },
-  {
-    title :"SKINNY FIT JEANS",
-    id:2,
-    img_url:"/image2.png",
-    price: "$240",
-    rate:"3.5/5",
-    discount :"$260",
-    percent:"-20%",
-
-  },
-  {
-    title :"CHECKERED SHIRT",
-    id:3,
-    img_url:"/image3.png",
-    price: "$180",
-    rate:"4.5/5",
-    discount :"",
-    percent:"",
-  },
-  {
-    title :"SLEEVE STRIPED T-SHIRT",
-    id:4,
-    img_url:"/image4.png",
-    price: "$130",
-    rate:"4.5/5",
-    discount :"$160",
-    percent:"-30%",
-
-  },
-]
-  
+ 
 export default function NewProduct(){
+  const product =   useSelector((state:any)=>state.product)   
   const params = useParams();
     const id = params.id
-    const item = product.find((item)=> item.id === Number(id))
+    const item = product.find((item:any)=> item.id === Number(id))
     if (!item){
       <h1>Product Not Find</h1>
     }
+    const dispatch = useDispatch();
+
+    const [cartItem, setcartItem] = useState(
+      {
+        title :item?.title,
+        id:item?.id,
+        img_url:item?.img_url,
+        price: item?.price,
+        rate:item?.rate,
+        discount :item?.discount,
+        percent:item?.percent,
+        qty:item?.qty
+      }
+    )
     return(
       <>
         <section className="flex-wrap flex gap-2 xl:gap-5 justify-center w-full h-fit p-3 md:p-2 lg:p-3 xl:p-8">
@@ -101,9 +67,9 @@ export default function NewProduct(){
     <hr className="pb-3 lg:pb-4"/>
     <div className="flex gap-x-3 lg:gap-x-5 lg:pt-2 items-center">
     <div className="flex items-center text-[10px] sm:text-[13px] lg:text-[14px] justify-center pl-2 pr-2 gap-5 h-7 lg:h-10 bg-gray-200 lg:w-40 rounded-full " >
-<div className="flex justify-between"><BiMinus /></div><div>1</div><div><BiPlus /></div>
+<button onClick={()=>setcartItem({...cartItem,qty:cartItem.qty <= 1? 1: --cartItem.qty})} className="flex justify-between"><BiMinus /></button><div>{cartItem.qty}</div><button onClick={(()=>setcartItem({...cartItem,qty:++cartItem.qty}))}><BiPlus /></button>
 </div>
-<button className="text-[10px] sm:text-[13px] lg:text-[14px] h-8 lg:h-10 w-full rounded-full bg-black text-white">Add to Cart</button>
+<button onClick={()=>dispatch(addtocart(cartItem))} className="text-[10px] sm:text-[13px] lg:text-[14px] h-8 lg:h-10 w-full rounded-full bg-black text-white">Add to Cart</button>
 </div>
 </div>
         </section>

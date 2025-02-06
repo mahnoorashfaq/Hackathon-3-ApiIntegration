@@ -5,7 +5,10 @@ import { VscAccount } from "react-icons/vsc";
 import Link from "next/link";
 import { NavigationMenuDemo } from "./shopdropdown";
 import { SheetSide } from "./hamburger";
+import { useSelector } from "react-redux";
 export default function Header(){
+    const cart =  useSelector((state:any)=>state.cart)
+
     return(
         <section>
             {/* Header Top */}
@@ -32,8 +35,13 @@ export default function Header(){
                     <input type="text" placeholder="Search for products..." className=" w-[500px] lg:w-[350px] h-9 text-xs p-2 outline-none	bg-gray-200	" />  
                 </div></div>
                 {/* icons */}
-                <div className="flex gap-x-2 items-center text-lg md:text-xl xl:text-2xl">
-                <Link href="/cart"><FiShoppingCart /></Link>
+                <div className="flex gap-x-2 items-center text-xl lg:text-2xl">
+                <Link href="/cart">
+                {cart.length > 0 && (
+                <span className="absolute bg-red-400  rounded-full text-white w-[20px] h-[20px] flex justify-center items-center p-1 text-sm ">{cart.length}</span>
+             )
+             }<FiShoppingCart />
+                </Link>
                <Link href="/"><VscAccount /></Link> 
                </div>
                 </div>

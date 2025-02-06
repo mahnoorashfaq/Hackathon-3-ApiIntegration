@@ -15,7 +15,6 @@ interface Isellproduct{
     discount:string,
     percent:string,
     rate:string
-  
   }
   const sellProduct:Isellproduct[]=[
     {

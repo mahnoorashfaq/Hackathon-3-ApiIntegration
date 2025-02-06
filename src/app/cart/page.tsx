@@ -1,39 +1,79 @@
-import { FaArrowRight } from "react-icons/fa";
-export default function Cart(){
-    return(
-       <section className="cart-section flex flex-col ">
-      <div className="mb-4 mr-auto"><p className="flex gap-2 text-xs items-center ">Home  <FaArrowRight/>Cart</p>
-     <h1 className="text-2xl md:text-2xl font-bold">Your cart </h1></div>
+"use client"
+import React from 'react'
+import { useSelector } from 'react-redux'
+import Cartpage from './cartpage';
+import { Button } from '@/components/ui/button';
+import { loadStripe } from "@stripe/stripe-js";
 
-        <div className="cart-boxes flex justify-center gap-10">
-        <div className="cart-boxes-section1">
-        <div className="cart-box1 flex gap-2 sm:gap-6 lg:gap-8">
-         <div className="cartimg1 rounded"></div>
-         <div><p className="text-xs md:text-sm font-semibold">Gradient Graphic T-shirt</p><p className="text-xs">Size: Large</p><p className="text-xs">Color: White</p><p className="text-sm font-bold" >$145</p></div>
-         <div className="h-6 w-20 bg-gray-100 flex items-center text-sm justify-center rounded-lg mt-10"><p>-   1    +</p></div>
-        </div>
-        <hr />
-        <div className="cart-box1 flex  gap-2 sm:gap-6 lg:gap-8">
-         <div className="cartimg2 rounded"></div>
-         <div><p className="text-xs md:text-sm font-semibold">Gradient Graphic T-shirt</p><p className="text-xs">Size: Large</p><p className="text-xs">Color: White</p><p className="text-sm font-bold" >$145</p></div>
-         <div className="h-6 w-20 bg-gray-100 flex items-center text-sm justify-center rounded-lg mt-10"><p>-   1    +</p></div>
-        </div>
-        <hr />
-        <div className="cart-box1 flex gap-2 sm:gap-6 lg:gap-8">
-         <div className="cartimg3 rounded"></div>
-         <div><p className="text-xs md:text-sm font-semibold">Gradient Graphic T-shirt</p><p className="text-xs">Size: Large</p><p className="text-xs">Color: White</p><p className="text-sm font-bold" >$145</p></div>
-         <div className="h-6 w-20 bg-gray-100 flex items-center  text-sm justify-center rounded-lg mt-10"><p>-   1    +</p></div>
-        </div>
-        </div>
-        
-        <div className="cart-boxes-section2 flex flex-col justify-center pl-7 pr-5">
-          <p className="text-sm sm:text-base font-bold pb-2">Order Summary</p>
-         <div className="flex text-xs items-center gap-28 pb-3"> <div><p>Subtotal</p><p>Discount (-20%)</p><p>Delivery Fee</p></div><div><p>$565</p><p>-$113</p><p>$15</p></div></div><hr/>
-         <div className="flex text-xs gap-44 pt-3"><p>Total</p> <p>$467</p></div>
-            <div className="flex gap-4 mt-3"><input type="text" placeholder="Add promo code" className="text-xs h-6 bg-gray-100 w-40 rounded-xl pl-4"  /> <button className="text-xs h-6 bg-black w-16 text-white rounded-xl">Apply</button></div>
-        <div className="cart-btn flex items-center  justify-center mt-3 h-8 w-56 rounded-xl text-xs "><input type="text" placeholder="Go to Checkout" className="outline-none bg-none"/> <FaArrowRight className="text-white text-xs"/>  </div>
-        </div>
-        </div>
-       </section>
-    )
+const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "pk_test_51Qp2NDRorbsmCSgV1B25uZicijXqTSmT4ymF8X7qAe6r88ZQrq221zZLjt3psOHqjOkwrK5DM5BjLINUHXEvkPaL00nuJbhs6u");
+
+interface CartItem {
+  price: number;
+  discount: number;
+  qty: number;
 }
+
+function Cartt() {
+  const handleCheckout = async () => {
+    const stripeUI = await stripe;
+    let sessionResponse: any = await fetch("/api/checkout", {
+      method: "POST",
+      body: JSON.stringify({
+        data: [],
+      }),
+    });
+    sessionResponse = await sessionResponse.json();
+
+    stripeUI?.redirectToCheckout({
+      sessionId: sessionResponse.sessionId,
+    });
+  };
+  
+  // formula 
+   
+  const cartArray: CartItem[] = useSelector((state: { cart: CartItem[] }) => state.cart);
+
+  const total = cartArray.reduce((total: number, arr: CartItem) => {
+    const discountedPrice = arr.discount > 0 ? arr.price - (arr.price * arr.discount) / 100 : arr.price;
+    return total + discountedPrice * arr.qty;
+  }, 0);
+
+
+  
+  return (
+      <div className=' mt-24 flex flex-col lg:flex-row justify-around items-center lg:items-start'>
+         <Cartpage/>
+           {/* Order Summary */}
+           <div className="bg-white p-4 w-[90%] lg:w-[500px] border rounded-[20px] mt-5 lg:mt-0">
+                             <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+                             <div className="space-y-2">
+                               <div className="flex justify-between">
+                                 <p >Subtotal</p>
+                                 <p>${total}</p>
+                               </div>
+                               <div className="flex justify-between">
+                                 <p>Discount (-20%)</p>
+                                 <p>-${0}</p>
+                               </div>
+                               <div className="flex justify-between">
+                                 <p>Delivery Fee</p>
+                                 <p>$0</p>
+                               </div>
+                               <div className="border-t pt-2 flex justify-between font-bold">
+                                 <p>Total</p>
+                                 <p>${total}</p>
+                               </div>
+                               <div className="flex justify-between items-center">
+                                <input className="h-10 rounded-[6px] bg-[#F0F0F0] px-4 w-[200px] md:w-[360px] border-none" type="search" placeholder="Add promo code" />
+                                <Button className="w-[100px] rounded-[20px]">Apply</Button>
+                               </div>
+                             </div>
+                             <button className="w-full mt-4 bg-black text-white py-2 rounded-md"  onClick={handleCheckout}>
+                               Go to Checkout
+                             </button>
+                         </div>
+        
+      </div>
+  )
+}
+export default Cartt

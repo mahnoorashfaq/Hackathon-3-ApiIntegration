@@ -5,7 +5,7 @@ import "./mediaquery.css";
 import Header from "@/component/header";
 import Footer from "@/component/footer";
 import FooterUp from "@/component/footerup";
-
+import Providers from "./Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,10 +32,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Providers>
         <Header />
         {children}
         <FooterUp />
         <Footer />
+        </Providers>
       </body>
     </html>
     
