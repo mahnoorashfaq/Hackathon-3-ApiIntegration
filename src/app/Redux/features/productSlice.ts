@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Iproduct } from '@/app/types/page'
-import Product from '@/app/types/mock'
+import { Iproduct } from '../../../../types/page'
+import Product from '../../../../types/mock'
 
 // Define the initial state using that type
 const initialState: Iproduct[] = Product

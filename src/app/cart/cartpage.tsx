@@ -4,7 +4,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Minus, Plus } from "lucide-react";
 import { addition, delItem, subraction } from "../Redux/features/cartSlice";
-import { Cart } from "../types/page";
+import { Cart } from "../../../types/page";
 
 function Cartpage() {
     const cartItem:Cart[] = useSelector((state:any)=>state.cart)
